@@ -1,3 +1,22 @@
+"""
+You are given an array A of size n. In one move, you can select a subarray of size 3. 
+Let those indices be i - 1, i and i + 1. We add A[i] to our total score and then change A[i], A[i - 1] and A[i + 1] to 0. 
+We repeat this process untill the entire array becomes 0. 
+If we select the subarrays optimally, what is the maximum score that can be achieved?.
+Input format:
+
+First line contains one integer t, denoting the number of test cases.
+
+Each testcase is provided as follows:-
+
+First line contains one integer n, denoting the size of array.
+
+Next line contains n integers (a1, a2, ... an), representing the array.
+
+Output format:
+
+For each test case, print the maximum achievable score in a new line.
+"""
 def max_score(arr, score=0):
     maxElem = arr[1]
     maxIndex = 1
@@ -31,15 +50,15 @@ def max_score_dp(arr):
 
     return dp[-1]
 
-"""
 t = int(input())
 
 for i in range(t):
     n = int(input())
     arr = (input()).split(" ")
     arr = [int(a) for a in arr]
-    result = max_score(arr)
+    result = max_score_dp(arr)
     print(result)
+
 """
 st = "65 74 5 48 53 5 9 63 97 79 49 16 94 26 29 10 28 60 64 76 61 38 65 21 22 21 2 21 81 65 30 49 51 7 15 54 43 39 31 21 1 87 80 26 60 92 28 59 9 35 70 80 20 47 11 29 26 57 65 3 82 21 62 5 26 85 38 32 89 52 58 11 50 9 37 13 100 18 5 67 65 84 79 53 98 68 65 61 77 9 61 93 2 13 50 91 8 83 14 22"
 st = "44 13 78 20 45 63 13 41 94 39 69 8 86 96 96 42 66 14 52 76 69 100 76 16 33 35 60 28 47 70 59 63 24 66 11 25 72 48 16 62 11 1 18 46 71 25 17 12 77 97 3 53 17 8 73 61 97 18 44 9 31 61 63 79 34 64 69 99 98 13 48 95 28 2 9 31 86 79 76 51 13 88 29 42 84 83 49 83 60 66 79 55 9 15 30 15 32 4 59 19"
@@ -49,3 +68,4 @@ arr = [int(a) for a in arr]
 
 result = max_score_dp(arr)
 print(result)
+"""
