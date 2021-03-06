@@ -59,8 +59,6 @@ class Solution:
 		
 		return False
 
-obj = Solution()
-
 t = int(input())
 for i in range(t):
   n = int(input())
@@ -68,5 +66,6 @@ for i in range(t):
   for i in range(n):
     arr = [int(x) for x in input().strip().split(' ')]
     grid.append(arr)
+  obj = Solution()
   ans = obj.is_Possible(grid)
   print(ans)
