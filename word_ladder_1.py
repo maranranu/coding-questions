@@ -1,57 +1,54 @@
+"""
+Given two distinct words startWord and targetWord, and a list denoting wordList of unique words of equal lengths. Find the length of the shortest transformation sequence from startWord to targetWord.
+Keep the following conditions in mind:
+
+A word can only consist of lowercase characters.
+Only one letter can be changed in each transformation.
+Each transformed word must exist in the dictionary.
+The second part of this problem can be found here.
+
+
+Example 1:
+
+Input:
+wordList = {"des","der","dfr","dgt","dfr","dfs"}
+startWord = "der", targetWord= "dfs",
+Output:
+3
+Explanation:
+The length of the smallest transformation
+sequence from "der" to "dfs" is 3
+i,e "der" -> "dfr" -> "dfs".
+"""
 from collections import deque
 
-class Graph:
-    def __init__(self, n):
-        self.graph = {}
-        self.node = n
-    
-    def addEdge(self, u, v):
-        if u in self.graph:
-            self.graph[u].append(v)
-        else:
-            self.graph[u] = [v]
-    
-    def bfs(self, u, destination, visit):
+class Solution:
+    def bfs(self, start, target, wordList):
         queue = deque()
-        
-        queue.append((u, 0))
-        visit.add(u)
+        visit = set()
+        queue.append((start, 0))
+        visit.add(start)
         
         while len(queue) > 0:
             v, count = queue.popleft()
             
-            if v == destination:
+            if v == target:
                 return count + 1
             
-            for c in range(len(v)):
-                st = v[0:c] + '*' + v[c+1:]
-
-                if st in self.graph:
-                    for edge in self.graph[st]:
-                        if edge not in visit:
-                            queue.append((edge, count + 1))
+            for i in range(len(v)):
+                for c in 'abcdefghijklmnopqrstuvwxyz':
+                    st = v[0:i] + c + v[i+1:]
+                    
+                    if st in wordList and st not in visit:
+                        queue.append((st, count + 1))
+                        visit.add(st)
         return 0
-        
-class Solution:
+
     def wordLadderLength(self, startWord, targetWord, wordList):
-        n = len(set(wordList))
-        g = Graph(n)
-        
-        if targetWord not in wordList:
+        if targetWord not in wordList or startWord == targetWord:
             return 0
         
-        if startWord not in wordList:
-            wordList.append(startWord)
-        
-        for i in range(0, len(wordList)):
-            word = wordList[i]
-            
-            for c in range(len(word)):
-                key = word[0:c] + '*' + word[c+1:]
-                g.addEdge(key, word)
-
-        visit = set()
-        return g.bfs(startWord, targetWord, visit)
+        return self.bfs(startWord, targetWord, set(wordList))
 
 t = int(input())
 
