@@ -47,7 +47,6 @@ class Solution:
                         time += 1
                         check = True
                     q.append([temp[0]+1, temp[1]])
-                    temp[0] -= 1
                 
                 if self.isSafe(temp[0] - 1, temp[1], row, col) and hospital[temp[0] - 1][temp[1]] == 1:
                     hospital[temp[0] - 1][temp[1]] = 2
@@ -55,7 +54,6 @@ class Solution:
                         time += 1
                         check = True
                     q.append([temp[0] - 1, temp[1]])
-                    temp[0] += 1
                 
                 if self.isSafe(temp[0], temp[1] - 1, row, col) and hospital[temp[0]][temp[1] - 1] == 1:
                     hospital[temp[0]][temp[1] - 1] = 2
@@ -63,7 +61,6 @@ class Solution:
                         time += 1
                         check = True
                     q.append([temp[0], temp[1] - 1])
-                    temp[1] += 1
                 
                 if self.isSafe(temp[0], temp[1] + 1, row, col) and hospital[temp[0]][temp[1] + 1] == 1:
                     hospital[temp[0]][temp[1] + 1] = 2
@@ -71,7 +68,6 @@ class Solution:
                         time += 1
                         check = True
                     q.append([temp[0], temp[1] + 1])
-                    temp[1] -= 1
 
                 q.popleft()
             
